@@ -1,0 +1,15 @@
+git config --global --list
+git config --global --unset-all user.name
+git config --global --unset-all user.email
+git config --global --list
+git config --global user.name "UserName"
+git config --global user.email "username@gmail.com"
+git config --global --list
+git init
+git add .
+git commit -m "Commit Message"
+git branch -m main
+git remote add origin https://github.com/UserName/Reponame.git
+git push
+
+
