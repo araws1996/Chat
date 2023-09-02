@@ -1,0 +1,165 @@
+TO GO INTO A DIRECTORY USING BASH CLI
+=====================================
+
+cd FilePath
+
+TO REMOVE USERNAME AND EMAILS CONNECTED TO GOT BASH
+===================================================
+
+git config --global --unset-all user.name
+git config --global --unset-all user.email
+
+TO CONNECT GITHUB ACCOUNT TO BASH
+=================================
+
+git config --global user.name "AkashRashmin"
+git config --global user.email "akshrashminpro@gmail.com"
+
+TO CHECK WHETHER THE ACCOUNT WAS LINKED 
+=======================================
+
+git config --global --list
+
+
+GIT GLOABAL CONFIGURATION SAVE PATH
+===================================
+
+This PC > Local Disk(C:) > Users > Akash > .gitconfig
+
+
+TO INITIATE A FOLDER / SUBFOLDER
+================================
+
+git init NewFolderName
+
+or
+
+git init
+
+TO SHOW FILES & FOLDERS IN THE FOLDER
+=====================================
+
+ls
+ls -a
+
+
+TO MAKE THE GIT MASTER BRANCH TO NAME AS MAIN
+=============================================
+
+git branch -m main
+
+
+TO VIEW ALL THE BRANCHES
+========================
+
+git branch
+
+
+TO OPEN THE VS CODE IN THE SPESIFIC LOCATION
+============================================
+
+code .
+
+TO CHECK THE STATUS OF THE LOCATION
+===================================
+
+git status
+
+TO SEND THE UPDATES INTO THE STAGING AREA
+=========================================
+
+git add .
+
+TO COMMIT FILES IN STAGING AREA TO THE LOCAL REPO
+=================================================
+
+git commit -m "This is the First Commit of the Branch"
+
+TO CONNECT TO THE REMOTE REPOSITORY
+===================================
+
+git remote add origin https://github.com/AkashRashmin/ActivityOne.git
+
+TO PUSH TO THE SOURCES TO THE REMOTER REPO
+==========================================
+
+git push -u origin main
+
+IF THE PUSH FAILS GO TO WINDOWS CREDENTIAL MANAGER AND DELETE THE PREVIOUSLY LOGGED ACCOUNT
+
+CREATE .YML FILE IN LOCAL REEPO
+===============================
+
+Go to Repo Created in the GitHub
+Actions
+New Workflow
+Set up a workflow yourself
+edit the .yml and commit changes
+
+name: Deploy to AWS S3
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Configure AWS CLI
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-southeast-1
+          
+      - name: Deploy to S3
+        run: |
+          aws s3 sync ./ s3://${{ secrets.AWS_S3_BUCKET }} --exclude ".git/*" --exclude ".github/*"
+
+
+CREATE GITHUB ACTION SECRETS & VARIABLES
+========================================
+
+Goto Settings of your Repo in GitHub
+Expand the SECRETS & VARIABLES
+Go to Actions
+New repository secret
+Set Name : AWS_ACCESS_KEY_ID
+Set Secret : From .csv file
+Add secret
+New repository secret
+Set Name : AWS_SECRET_ACCESS_KEY
+Set Secret : From .csv file
+Add secret
+New repository secret
+Set Name : AWS_SECRET_ACCESS_KEY
+Set Secret : From .csv file
+Add secret
+New repository secret
+Set Name : AWS_S3_BUCKET
+Set Secret : copy paste your bucket name
+Add secret
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

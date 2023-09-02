@@ -1,0 +1,87 @@
+IAM User Creation
+=================
+
+LOG INTO AWS FREE TIER ACCOUNT
+GO TO IAM SERVICE
+SELECT USERS FROM LEFT PANE
+CREATE USER
+Enter a UserName
+Check Provide User Access to the AWS Management Console - optional
+Choose I want to create an IAM user
+Set Custom password
+Next
+Choose Attach policies directly
+Search S3
+Check AmazonS3FullAccess
+Next
+Create User
+Download .cvs file
+Go into User
+Select Security Credentials
+Create Access Key
+Choose 
+Command Line Interface (CLI)
+Check I understand the above recommendation
+Next
+Give a Description tag value
+Next
+Download .csv file
+Done
+
+S3 Bucket Creation
+==================
+
+GO TO S3 BUCKET SERVICE
+CREATE USER
+SET A GLOBALLY UNIQUE BUCKET NAME
+Select the AWS Region : Singapore
+Choose 
+ACLs enabled
+UNTIC Block all public access
+CHECK I acknowledge that the current settings 
+CREATE BUCKET
+Click on Bucket Name
+Click Permissions
+Edit 
+Paste
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::activityone-staticwebsite/*"
+        }
+    ]
+}
+
+Edit "arn:aws:s3:::Bucket-Name/*" and Rename it with copies Bucket ARN from above
+Save Changes
+Goto bucket Properties
+Scroll to bottom
+Edit Static website hosting
+Choose Enable
+Type Index document
+index.html
+Save Changes
+Click on the http://activityone-staticwebsite.s3-website-ap-southeast-1.amazonaws.com
+
+Now Make Changes to your index.html file and push it to the GitHub
+View the hosted url for the changes have occored or not
+Remember to wait until Git Action Finish.
+
+
+
+
+
+
+
+
+
+
+
+
+
